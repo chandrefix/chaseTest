@@ -40,7 +40,7 @@ function App() {
         iframe.removeEventListener('message', handleMessage);
       }
     };
-  }, []);
+  }, [isScriptLoaded]);
 
   //payment default functions
 
