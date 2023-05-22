@@ -13,7 +13,7 @@ function App() {
     script.async = false;
     script.onload = () => {
       setIsScriptLoaded(true);
-      // window.completePayment = completePayment;
+      
     };
     document.body.appendChild(script);
     return () => {
@@ -26,6 +26,7 @@ function App() {
     const iframe = iframeRef.current;
 
     const handleMessage = (event) => {
+      debugger
       if (event.data === 'paymentComplete') {
         completePayment();
       }
@@ -33,6 +34,7 @@ function App() {
 
     if (iframe) {
       iframe.addEventListener('message', handleMessage);
+      window.completePayment = completePayment;
     }
 
     return () => {
@@ -40,7 +42,7 @@ function App() {
         iframe.removeEventListener('message', handleMessage);
       }
     };
-  }, [isScriptLoaded]);
+  }, [isScriptLoaded, UID]);
 
   //payment default functions
 
