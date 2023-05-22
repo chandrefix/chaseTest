@@ -12,6 +12,7 @@ function App() {
       script.async = true;
       script.onload = () => {
         setIsScriptLoaded(true);
+        window.completePayment = completePayment;
     };
       document.body.appendChild(script);
       return () => {
@@ -47,7 +48,14 @@ const completePayment = (data) => {
     console.log("completePayment")
 
 }
-window.completePayment = completePayment;
+
+window.addEventListener("message", function (event) {
+  if (event.origin === "https://chase-var.hostedpaymentservice.net") {
+    debugger
+console.log(event.data)
+  }
+}, false)
+
 
   return (
     <div className="App">
